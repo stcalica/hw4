@@ -25,8 +25,22 @@
 )
 
 (defun before(a b l)
+	(cond 
+		((null l) null)
+		((equal a (car l) ) before_help a b t l)
+		(t null)
+	)
+	
 )
+(defun before_help(a b seen_a l)
+	(cond
+		((null l) null)
+		(seen_a and (equal b car l) car l )
+		((seen_a) (append l (before_help a b t cdr l)))
+		((t) before_help a b seen_a cdr l)
+	)	
 
+)
 (defun split-if(fun l)
 )
 
