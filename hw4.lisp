@@ -20,3 +20,18 @@
 ;(setq l nil) ; doesnt eval (1 2 3) just stores it to l  
 
 ;(all-length l)  ; sends l by evaluating that it is a list 
+
+(defun range(l)
+)
+
+(defun before(a b l)
+)
+
+(defun split-if(fun l)
+)
+
+(defun group(l n)
+)
+
+(defun mostn(f l)
+)
