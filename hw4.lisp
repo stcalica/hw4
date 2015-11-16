@@ -22,6 +22,7 @@
 ;(all-length l)  ; sends l by evaluating that it is a list 
 
 (defun range(l)
+(list (apply 'min l) (apply 'max l))
 )
 
 (defun before(a b l)
