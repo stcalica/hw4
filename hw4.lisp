@@ -32,18 +32,14 @@
 )
 
 (defun group(l n)
-	(loop for x in l
-		do(
-			;(group_help(l x n))
-		)
-	)
+	(list (group_help(l itrm n)))
 )
 
 (defun group_help(l itrm n)
 	(cond
 		((null l) itrm);return itrm
-		;((equal (length itrm) n) (cons (itrm)(group_help(l list(empty_list null) n)) ))
-		;(t (group_help((cdr l) (setq itrm (cons (car l) itrm)) n)))
+		((equal (length itrm) n) (cons (itrm)(group_help(l list(empty_list null) n)) ))
+		(t (group_help( (cdr l) (setq itrm (cons (car l) itrm)) n)))
 	)
 )
 
@@ -70,6 +66,7 @@
 	(list (splitLeft f l) (splitRight f l)) ;left will have t, right will have nil
 	
 )	
+
 
 (defun mostn(f l)
 
