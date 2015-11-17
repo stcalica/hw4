@@ -15,21 +15,20 @@
 	(list (apply 'min l) (apply 'max l))
 )
 
-(defun before(a b l)
-	(cond 
-		((null l) null)
-		((equal a (car l) ) before_help a b t l)
-		(t null)
-	)
-	
-)
-(defun before_help(a b seen_a l)
+(defun after_a(a b seen_a l)
 	(cond
 		((null l) null)
-		(seen_a and (equal b car l) car l )
-		((seen_a) (append l (before_help a b t cdr l)))
-		((t) before_help a b seen_a cdr l)
+		((and seen_a (equal b (car l))) (car l))
+		(seen_a (cons (car l) (after_a a b t (cdr l))))
+		((t) (after_a a b t (cdr l)))
 	)	
+)
+(defun before (a b l) 
+        (cond
+                ((null l) null)
+                ((equal a (car l) ) (after_a a b t l))
+                (t null)
+        )
 
 )
 (defun split-if(fun l)
