@@ -31,32 +31,45 @@
         )
 )
 
+(defun group(l n)
+	(loop for x in l
+		do(
+			;(group_help(l x n))
+		)
+	)
+)
+
+(defun group_help(l itrm n)
+	(cond
+		((null l) itrm);return itrm
+		;((equal (length itrm) n) (cons (itrm)(group_help(l list(empty_list null) n)) ))
+		;(t (group_help((cdr l) (setq itrm (cons (car l) itrm)) n)))
+	)
+)
+
+
 (defun splitLeft(f l)
 	(cond
 		((null l) nil)
-		((equal nil (funcall f (car l)) ) (cons (car l) (splitLeft f (cdr l)))) 
- 		
+		((equal nil (funcall f (car l)) ) (append (list (car l)) (splitLeft f (cdr l)))) 
+ 		((equal t (funcall f (car l))) (splitLeft f (cdr l)))	
 	)
 )
 
 (defun splitRight(f l)	
 	(cond
 		((null l) nil)
-		((equal t (funcall f (car l)) ) (cons (car l) (splitRight f (cdr l)))) 
- 		
+		((equal t (funcall f (car l)) ) (append (list (car l)) (splitRight f (cdr l)))) 
+ 		((equal nil (funcall f (car l))) (splitRight f (cdr l)))		
 	)
 )
 
 (defun split-if (f l)
 	
-	;(mapcar f l)
+	(mapcar f l)
 	(list (splitLeft f l) (splitRight f l)) ;left will have t, right will have nil
 	
 )	
-
-(defun group(l n)
-)
-
 
 (defun mostn(f l)
 
