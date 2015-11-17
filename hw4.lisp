@@ -39,7 +39,7 @@
 	(cond
 		((null l) itrm);return itrm
 		((equal (length itrm) n) (cons (itrm)(group_help(l list(empty_list null) n)) ))
-		(t (group_help( (cdr l) ((cons (car l) itrm)) n)))
+	;	(t (group_help( (cdr l) (cons (car l) itrm) n)))
 	)
 )
 
@@ -84,3 +84,4 @@
 	)
 
 )
+
