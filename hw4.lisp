@@ -32,14 +32,16 @@
 )
 
 (defun group(l n)
-	(list (group_help(l list(itrm null) n)))
+	( group_help l nil  n)
 )
 
 (defun group_help(l itrm n)
 	(cond
-		((null l) itrm);return itrm
-		((equal (length itrm) n) (cons (itrm)(group_help(l list(empty_list null) n)) ))
-	;	(t (group_help( (cdr l) (cons (car l) itrm) n)))
+		((null l) itrm)
+		((equal (length itrm) n) (cons itrm (group_help l nil n)))	
+		((<	(length itrm) n) (group_help (cdr l) (append itrm  (list (car l))) n))
+;		((equal (length itrm) n) (cons itrm  group_help( l (cons()) n)))  
+;		((>	(length itrm) n) funcall group_help( cdr l (append itrm (list (car l)) n)))
 	)
 )
 
@@ -61,10 +63,7 @@
 )
 
 (defun split-if (f l)
-	
-	(mapcar f l)
 	(list (splitLeft f l) (splitRight f l)) ;left will have t, right will have nil
-	
 )	
 
 
