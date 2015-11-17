@@ -34,16 +34,16 @@
 (defun splitLeft(f l)
 	(cond
 		((null l) nil)
-		((equal nil (funcall f (car l)) ) (cons (car l) (splitLeft f (cdr l)))) 
- 		
+		((equal nil (funcall f (car l)) ) (append (list (car l)) (splitLeft f (cdr l)))) 
+ 		((equal t (funcall f (car l))) (splitLeft f (cdr l)))	
 	)
 )
 
 (defun splitRight(f l)	
 	(cond
 		((null l) nil)
-		((equal t (funcall f (car l)) ) (cons (car l) (splitRight f (cdr l)))) 
- 		
+		((equal t (funcall f (car l)) ) (append (list (car l)) (splitRight f (cdr l)))) 
+ 		((equal nil (funcall f (car l))) (splitRight f (cdr l)))		
 	)
 )
 
@@ -58,19 +58,19 @@
 )
 
 
-(defun mostn(f l)
-
-	(setq l (mapcar #'f l))
-	(setq m (max l) )
-	(mostn_help m f l)
-
-)
-
-(defun mostn_help(m f l) 
-	(cond
-		((null l) nil) 
-		((equal m  (funcall f (car l) ) )   cons( (car l) (mostn_help m f (cdr l))) )
-		(t  (mostn_help m f (cdr l)) ) 
-	)
-
-)
+;(defun mostn(f l)
+;
+;	(setq l (mapcar #'f l))
+;	(setq m (max l) )
+;	(mostn_help m f l)
+;
+;)
+;
+;(defun mostn_help(m f l) 
+;	(cond
+;		((null l) nil) 
+;		((equal m  (funcall f (car l) ) )   cons( (car l) (mostn_help m f (cdr l))) )
+;		(t  (mostn_help m f (cdr l)) ) 
+;	)
+;
+;)
