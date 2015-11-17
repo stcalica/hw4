@@ -15,19 +15,18 @@
 	(list (apply 'min l) (apply 'max l))
 )
 
-(defun after_a(a b seen_a l)
+(defun after_a(b l)
 	(cond
-		((null l) null)
-		((and seen_a (equal b (car l))) (car l))
-		(seen_a (cons (car l) (after_a a b t (cdr l))))
-		((t) (after_a a b t (cdr l)))
+		((null l) nil)
+		((equal (car l) b) (list (car l)))
+		(t (cons (car l) (after_a b (cdr l)) ))
 	)	
 )
 (defun before (a b l) 
         (cond
-                ((null l) null)
-                ((equal a (car l) ) (after_a a b t l))
-                (t null)
+                ((null l) nil)
+                ((equal a (car l) ) (cons (car l) (after_a b (cdr l))))
+                (t (before a b (cdr l)) )
         )
 
 )
