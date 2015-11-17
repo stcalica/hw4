@@ -16,7 +16,20 @@
 	(list (apply 'min l) (apply 'max l))
 )
 
-(defun before(a b l)
+(defun after_a(b l)
+	(cond
+		((null l) nil)
+		((equal (car l) b) (list (car l)))
+		(t (cons (car l) (after_a b (cdr l)) ))
+	)	
+)
+
+(defun before (a b l) 
+        (cond
+                ((null l) nil)
+                ((equal a (car l) ) (cons (car l) (after_a b (cdr l))))
+                (t (before a b (cdr l)) )
+        )
 )
 
 (defun split-if (f l)
