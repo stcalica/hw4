@@ -32,7 +32,7 @@
 )
 
 (defun group(l n)
-	(list (group_help(l itrm n)))
+	(list (group_help(l list(itrm null) n)))
 )
 
 (defun group_help(l itrm n)
