@@ -32,18 +32,28 @@
         )
 )
 
+(defun splitLeft(f l)
+	(cond
+		((null l) nil)
+		((equal nil (funcall f (car l)) ) (cons (car l) (splitLeft f (cdr l)))) 
+ 		
+	)
+)
+
+(defun splitRight(f l)	
+	(cond
+		((null l) nil)
+		((equal t (funcall f (car l)) ) (cons (car l) (splitRight f (cdr l)))) 
+ 		
+	)
+)
+
 (defun split-if (f l)
-	(mapcar f l)
-	(list splitLeft f l splitRight f l ) ;left will have t, right will have nil
+	
+	;(mapcar f l)
+	(list (splitLeft f l) (splitRight f l)) ;left will have t, right will have nil
+	
 )	
-
-(splitLeft(f l)
-	(mapcar f l) 	
-)
-
-(splitRight(f l)
-	(mapcar f l)
-)
 
 (defun group(l n)
 )
