@@ -16,24 +16,37 @@
 	(list (apply 'min l) (apply 'max l))
 )
 
-(defun before(a b l)
+(defun after_a(b l)
+	(cond
+		((null l) nil)
+		((equal (car l) b) (list (car l)))
+		(t (cons (car l) (after_a b (cdr l)) ))
+	)	
 )
-
-(defun split-if(fun l)	
+(defun before (a b l) 
+        (cond
+                ((null l) nil)
+                ((equal a (car l) ) (cons (car l) (after_a b (cdr l))))
+                (t (before a b (cdr l)) )
+        )
 )
 
 (defun group_help(l itrm n)
 	(cond
 		((null l) itrm);return itrm
-		((length itrm) (+ (itrm)(group_help(l list(empty_list null) n)) ()))
-		(t (group_help((cdr l) (setq itrm (+ (car l) itrm)) n)))
+		((equal (length itrm) n) (cons (itrm)(group_help(l list(empty_list null) n)) ))
+		(t (group_help((cdr l) (setq itrm (cons (car l) itrm)) n)))
 	)
+)
+
+(defun split-if(fun l)
+
 )
 
 (defun group(l n)
 	(loop for x in l
 		do(
-			(group_help(l x n)
+			;(group_help(l x n))
 		)
 	)
 )
