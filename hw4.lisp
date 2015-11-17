@@ -23,24 +23,13 @@
 		(t (cons (car l) (after_a b (cdr l)) ))
 	)	
 )
+
 (defun before (a b l) 
         (cond
                 ((null l) nil)
                 ((equal a (car l) ) (cons (car l) (after_a b (cdr l))))
                 (t (before a b (cdr l)) )
         )
-)
-
-(defun group_help(l itrm n)
-	(cond
-		((null l) itrm);return itrm
-		((equal (length itrm) n) (cons (itrm)(group_help(l list(empty_list null) n)) ))
-		(t (group_help((cdr l) (setq itrm (cons (car l) itrm)) n)))
-	)
-)
-
-(defun split-if(fun l)
-
 )
 
 (defun group(l n)
@@ -50,6 +39,38 @@
 		)
 	)
 )
+
+(defun group_help(l itrm n)
+	(cond
+		((null l) itrm);return itrm
+		;((equal (length itrm) n) (cons (itrm)(group_help(l list(empty_list null) n)) ))
+		;(t (group_help((cdr l) (setq itrm (cons (car l) itrm)) n)))
+	)
+)
+
+
+(defun splitLeft(f l)
+	(cond
+		((null l) nil)
+		((equal nil (funcall f (car l)) ) (cons (car l) (splitLeft f (cdr l)))) 
+ 		
+	)
+)
+
+(defun splitRight(f l)	
+	(cond
+		((null l) nil)
+		((equal T (funcall f (car l)) ) (cons (car l) (splitRight f (cdr l)))) 
+ 		
+	)
+)
+
+(defun split-if (f l)
+	
+	;(mapcar f l)
+	(list (splitLeft f l) (splitRight f l)) ;left will have t, right will have nil
+	
+)	
 
 (defun mostn(f l)
 )
