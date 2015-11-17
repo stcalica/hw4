@@ -1,3 +1,4 @@
 (load "test.l")
 (load "hw4.lisp")
-(ts)
+;(ts)
+(test-mostn)
