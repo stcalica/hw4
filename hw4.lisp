@@ -32,14 +32,14 @@
 )
 
 (defun group(l n)
-	( group_help l nil  n)
+	( group_help l ()  n)
 )
 
 (defun group_help(l itrm n)
 	(cond
-		((null l) itrm)
+		((null l) (list itrm))
 		((equal (length itrm) n) (cons itrm (group_help l nil n)))	
-		((<	(length itrm) n) (group_help (cdr l) (append itrm  (list (car l))) n))
+		((<	(length itrm) n) (group_help (cdr l) (append itrm (list (car l))) n))
 ;		((equal (length itrm) n) (cons itrm  group_help( l (cons()) n)))  
 ;		((>	(length itrm) n) funcall group_help( cdr l (append itrm (list (car l)) n)))
 	)
