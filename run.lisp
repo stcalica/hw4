@@ -10,7 +10,7 @@
 ;(test-mostn)
 
 ;PART 2
-;(test-Match)
+(test-Match)
 
 ;PART 3
 ;(test-Match-Var)
