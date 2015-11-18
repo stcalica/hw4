@@ -86,5 +86,12 @@
 )
 
 (defun match(pat ass)
-
+	(cond
+		( (or (null pat) (null ass)) 		(equal pat ass) )
+		( (equal '? (car pat)) 			(match (cdr pat)(cdr ass)) )
+		( (and (equal '! (car pat)) 
+			(match (cdr pat)(cdr ass))) 	T )
+		( (equal '! (car pat)) 			(match pat (cdr ass)) )
+		( t					(and (equal (car pat) (car ass)) (match (cdr pat) (cdr ass)) ))
+	)
 )
