@@ -26,7 +26,7 @@
 (defun before (a b l) 
         (cond
                 ((null l) nil)
-                ((equal a (car l) ) cons (car l) (after_a b (cdr l)))
+                ((equal a (car l) ) (cons (car l) (after_a b (cdr l))))
                 (t (before a b (cdr l)) )
         )
 )
