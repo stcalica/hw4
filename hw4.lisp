@@ -99,13 +99,13 @@
 	(cond
 		( (or (null pat) (null ass)) 		(equal pat ass) )
 		( (equal '? (car pat)) 	(question pat ass)  )
-		( (equal '! (car pat) 	(exclaimation pat ass)	)
+		( (equal '! (car pat) ) 	(exclaimation pat ass)	)
 		( t (and (equal (car pat) (car ass)) (match-var (cdr pat) (cdr ass)) ))
 	)
 )
 (defun exlaimation (pat ass)
 	
-	(setq (car pat) (quote (car ass) ) 
+	(setq (car pat) (quote (car ass) ) ) 
 	(match-var (cdr pat) (cdr ass) )
 
 )
