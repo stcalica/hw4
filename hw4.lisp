@@ -100,7 +100,7 @@
 		( (or (null pat) (null ass)) 		(equal pat ass) )
 		( (equal '? (car pat)) 			(match-var(cdr pat)(cdr ass)) )
 		( (and (equal '! (car pat)) (match (cdr pat)(cdr ass))) 	T )
-		( (equal '! (car pat)) 	(match-var pat (cdr ass)) )
+		( (equal '! (car pat)) 	(setq (cadar pat) (quote (car ass)) )	)
 		( (equal  (car pat) '?)  (setq (car pat) (car ass) )  match-var (cdr pat) (cdr ass)   T	) 
 		( (equal  (car pat) '!) and ( match-var (cdr ( cons (car ass)   pat) ) (cdr ass) )	   T	)
 		( t (and (equal (car pat) (car ass)) (match-var (cdr pat) (cdr ass)) ))
