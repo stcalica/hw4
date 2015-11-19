@@ -99,7 +99,7 @@
 (defun match-var(pat ass)
 	(cond
 		( (or (null pat) (null ass)) 		(equal pat ass) )
-		( (equal '? (car pat)) 			((setq (car pat)(car ass))(match-var(cdr pat)(cdr ass))) )
+		( (equal '? (car pat)) 			(setq (car pat)(car ass))) ;(match-var(cdr pat)(cdr ass))) )
 		( (and (equal '! (car pat)) (bind-and-match(pat ass))) 	T )
 		( (equal '! (car pat)) 			( (setq (cadar pat) (quote (car ass))) (match_var pat (cdr ass)) ) )
 		;( (equal  (car pat) '?)  		(setq (car pat) (car ass) )  match-var (cdr pat) (cdr ass)   T	) 
