@@ -98,11 +98,21 @@
 (defun match-var(pat ass)
 	(cond
 		( (or (null pat) (null ass)) 		(equal pat ass) )
-		( (equal '? (car pat)) 			(match-var(cdr pat)(cdr ass)) )
-		( (and (equal '! (car pat)) (match (cdr pat)(cdr ass))) 	T )
-		( (equal '! (car pat)) 	(setq (cadar pat) (quote (car ass)) )	)
-		( (equal  (car pat) '?)  (setq (car pat) (car ass) )  match-var (cdr pat) (cdr ass)   T	) 
-		( (equal  (car pat) '!) and ( match-var (cdr ( cons (car ass)   pat) ) (cdr ass) )	   T	)
+		( (equal '? (car pat)) 	(question pat ass)  )
+		( (equal '! (car pat) 	(exclaimation pat ass)	)
 		( t (and (equal (car pat) (car ass)) (match-var (cdr pat) (cdr ass)) ))
 	)
+)
+(defun exlaimation (pat ass)
+	
+	(setq (car pat) (quote (car ass) ) 
+	(match-var (cdr pat) (cdr ass) )
+
+)
+(defun question (pat ass) 
+	
+	(setq (cadar pat) (quote (car ass) ) ) 
+	(match-var (cdr pat) (cdr ass) ) 
+		
+
 )
