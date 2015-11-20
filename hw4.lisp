@@ -97,21 +97,29 @@
 )
 
 (defun match-var(pat ass)
+
 	(cond
 		( (or (null pat) (null ass)) 		(equal pat ass) )
-		((and  (listp (car pat)) (equal '? (caar pat)) (set (cadar pat) (car ass))) 			
-					 (match-var (cdr pat)(cdr ass)) )	
-		( (and (listp (car pat)) 
-			(equal '! (caar pat)) 
-			( match-var (cdr pat)(cdr ass))
-			(set (cadar pat) (list (append (cadar pat)) (car ass))) ;should append to list here
-			 ) 	T )
-		( (and (listp (car pat)) 
+		
+		((and  (listp (car pat)) (equal '? (caar pat)) (set (cadar pat) (car ass))) ;Take care of variable assignments			
+					 		(match-var (cdr pat)(cdr ass)) )
+		( (and (listp (car pat)) 	
 			(equal '! (caar pat))
-			(set  (cadar pat) (car ass))
+			(boundp (cadar pat))		;If var is bound
+			(set (cadar pat) (append (eval (cadar pat)) (list(car ass)))) ;Append to list
+			( match-var (cdr pat)(cdr ass)))
+			  				T )
+			
+		( (and (listp (car pat)) 		;If var is bound
+			(equal '! (caar pat))
 			)
-			(match-var pat (cdr ass)))
-		( T				(and (equal (car pat) (car ass)) (match-var (cdr pat) (cdr ass)) ))
+
+		(set (cadar pat) (append (eval (cadar pat)) (list(car ass)))) ;Append to list
+		 match-var pat (cdr ass) 
+
+		)
+
+		( t					(and (equal (car pat) (car ass)) (match-var (cdr pat) (cdr ass)) ))
 	)
 )
 
