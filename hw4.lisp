@@ -104,12 +104,11 @@
 		( (and (listp (car pat)) 
 			(equal '! (caar pat)) 
 			( match-var (cdr pat)(cdr ass))
-			(set (cadar pat) (append (cadar pat) (car ass))) ;should append to list here 
+			(set (cadar pat) (list (append (cadar pat)) (car ass))) ;should append to list here
 			 ) 	T )
 		( (and (listp (car pat)) 
 			(equal '! (caar pat))
-			(set (cadar pat) (car ass)
-)
+			(set  (cadar pat) (car ass))
 			)
 			(match-var pat (cdr ass)))
 		( T				(and (equal (car pat) (car ass)) (match-var (cdr pat) (cdr ass)) ))
